@@ -1,42 +1,25 @@
-import React,{useEffect,useState} from "react";
-import {Text, View,ScrollView } from "react-native";
-import styles from "./style";
-import { AntDesign } from '@expo/vector-icons';
-import productsAssets from '../../../assets/products';
-import {Product} from '../../models/index';
-import FavoriteProductItem from '../../components/FavoriteProductItem';
+import React, { useState, useEffect } from "react";
+import { ScrollView } from "react-native";
+import FavoriteProducts from '../../components/FavoriteProducts';
+import MainProduct from '../../components/MainProducts';
+import ProductAssets from '../../../assets/products';
+import categoriesData from '../../../assets/categories';
 
-export default function index(){
-   const [products,setProducts]=useState<Product[]>([]);
-    useEffect(()=>{
-        setProducts(productsAssets);
-    })
-   
-    
-     return (
-        <View style={styles.productsContainer}>
-            {/*Render Header */}
 
-            <View style={styles.titleProducts}>
-                
-             <Text style={styles.topicTitle}>Vitrin İlanları</Text>
+export default function index() {
+  const [product, setProduct] = useState([]);
+  const [categories, setCategories] = useState([]);
 
-                <View style={styles.detailTitle}>
-                    <Text style={styles.detailTitle}>Hepsini Gör</Text>
-                    <AntDesign name="right" size={18} color="#f24E61" />
-                </View>
-            </View>
+  useEffect(() => {
+    setProduct(ProductAssets);
+    setCategories(categoriesData);
+  },[]); // Boş bağımlılık dizisi ekleyerek sadece bir kez çalışmasını sağladık
 
-           <ScrollView horizontal={true} bounces={true}>
-              {productsAssets.map((item)=>{
-                return(
-                    <FavoriteProductItem key={item.id} product={item}/>
-                )
-              })}
-           </ScrollView>
-        </View>
-
-     )
+  return (
+    <ScrollView style={{ height: '100%' }}>
+     
+      <FavoriteProducts />
+      <MainProduct mainProduct={product} />
+    </ScrollView>
+  )
 }
-
-

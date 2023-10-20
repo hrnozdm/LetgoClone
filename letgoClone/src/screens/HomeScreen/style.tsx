@@ -11,7 +11,8 @@ const styles=StyleSheet.create({
     marginBottom:8,
   },
   productsContainer:{
-    marginHorizontal:'4%',
+    marginLeft:'4%',
+    width:'96%',
   },
   topicTitle:{
     fontWeight:'bold',
