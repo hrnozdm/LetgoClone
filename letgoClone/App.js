@@ -1,11 +1,12 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import HomeScreen from "../letgoClone/src/screens/HomeScreen";
+import { NavigationContainer } from '@react-navigation/native';
+import RootNavigation from './src/navigators/RootNavigation';
 
 export default function App() {
   return (
-   <SafeAreaView style={styles.container}>
-    <HomeScreen/>
-   </SafeAreaView>
+  <NavigationContainer>
+    <RootNavigation/>
+  </NavigationContainer>
    
   );
 }
